@@ -22,7 +22,7 @@ function walk(
         curr.x < 0 ||
         curr.x >= maze[0].length ||
         curr.y < 0 ||
-        curr.y >= maze[0].length
+        curr.y >= maze.length
     ) {
         return false;
     }
