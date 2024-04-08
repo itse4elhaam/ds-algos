@@ -1,8 +1,8 @@
 const dirs = [
-    [-1, 0],
-    [1, 0],
-    [0, -1],
-    [0, 1],
+    [1, 0], // top
+    [0, 1], // right
+    [0, -1], // bottom
+    [-1, 0], // left
 ];
 
 function walk(
@@ -24,7 +24,7 @@ function walk(
         curr.y < 0 ||
         curr.y >= maze[0].length
     ) {
-        return;
+        return false;
     }
 
     // we are on a wall
@@ -32,15 +32,16 @@ function walk(
         return false;
     }
 
+    if (curr.x === end.x && curr.y === end.y) {
+        path.push(end);
+        return true;
+    }
+
     // we are on the end
     if (seen[(curr.x, curr.y)]) {
         return false;
     }
 
-    if (curr.x == end.x && curr.y == end.y) {
-        path.push(curr);
-        return true;
-    }
     seen[curr.y][curr.x] = true;
     path.push(curr);
 
