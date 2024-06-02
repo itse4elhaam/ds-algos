@@ -1,4 +1,4 @@
-const dirs = [
+const DIRECTIONS = [
     [1, 0], // top
     [0, 1], // right
     [0, -1], // bottom
@@ -14,9 +14,7 @@ function walk(
     path: Point[],
 ) {
     // base cases:
-
     // checking if its off the map
-
     // maze is a square hence we can take 0's len
     if (
         curr.x < 0 ||
@@ -37,16 +35,15 @@ function walk(
         return true;
     }
 
-    // we are on the end
-    if (seen[(curr.x, curr.y)]) {
+    // if an old step is reached
+    if (seen[curr.y][curr.x]) {
         return false;
     }
 
     seen[curr.y][curr.x] = true;
     path.push(curr);
-
-    for (let i = 0; i < dirs.length; ++i) {
-        const [x, y] = dirs[i];
+    for (let i = 0; i < DIRECTIONS.length; ++i) {
+        const [x, y] = DIRECTIONS[i];
         const isFound = walk(
             maze,
             wall,
